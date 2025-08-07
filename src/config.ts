@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import packageJson from "../package.json";
+import type { Config } from "@svgr/core";
 
 export const weights = [100, 200, 300, 400, 500, 600, 700, 800, 900];
 export const sizes = [20, 24, 40, 48];
@@ -83,7 +84,9 @@ export const CONFIGS = {
   ICON_NAME_PREFIX: "Icon",
   SVGR_OPTIONS: {
     icon: true,
-    fill: "currentColor",
-    "aria-hidden": true,
-  },
+    svgProps: {
+      fill: "currentColor",
+      "aria-hidden": "true",
+    },
+  } satisfies Config,
 } as const;

@@ -1,6 +1,6 @@
 {
   "name": "@ailabs-yating/react-material-symbols-w400-s24-rounded",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "ailabs-yating",
   "license": "MIT",
   "description": "A comprehensive React icon set featuring Material Symbols. Each icon is typed with an embedded base64 image, enabling IDEs to display a visual preview on hover for an enhanced developer experience.",

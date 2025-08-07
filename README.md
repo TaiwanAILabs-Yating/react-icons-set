@@ -49,8 +49,10 @@ The icons are processed by [SVGR](https://react-svgr.com/) with the following de
 ```js
 {
     "icon": true,          // Sets width and height to 1em
-    "fill": "currentColor", // Inherits color from the parent's CSS
-    "aria-hidden": true,   // Hides decorative icons from screen readers
+    "svgProps": {
+      "fill": "currentColor", // Inherits color from the parent's CSS
+      "aria-hidden": true   // Hides decorative icons from screen readers
+    }
 }
 ```
 
