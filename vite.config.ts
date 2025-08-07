@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
 import packageJson from "./package.json";
+import { CONFIGS } from "./src/config";
 
 export default defineConfig({
   build: {
@@ -24,13 +25,7 @@ export default defineConfig({
   },
   plugins: [
     svgr({
-      svgrOptions: {
-        icon: true,
-        svgProps: {
-          fill: "currentColor",
-          "aria-hidden": "true",
-        },
-      },
+      svgrOptions: CONFIGS.SVGR_OPTIONS,
     }),
     dts({ exclude: ["vite.config.ts", "*/main.ts"], rollupTypes: true }),
   ],

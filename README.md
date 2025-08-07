@@ -1,24 +1,29 @@
-# React Icons Set - Material Symbols
+# Material Symbols for React
 
-A comprehensive Material Symbols library of SVG icons for React projects, bundling normal and filled icon sets into one easy-to-use package.
+A comprehensive library of Material Symbols for React, offering both normal and filled icon sets in a single, easy-to-use package.
 
 ## Installation
 
-Install the package using npm or yarn:
+Install your desired package variant using npm or yarn:
 
 ```bash
-npm install @ailabs-yating/react-material-symbols-wght400-opsz24-rounded
-# or
-yarn add @ailabs-yating/react-material-symbols-wght400-opsz24-rounded
+npm install @ailabs-yating/react-material-symbols-w400-s24-rounded
 ```
+
+**Available Variants:**
+
+- `@ailabs-yating/react-material-symbols-w400-s24-rounded`
+- `@ailabs-yating/react-material-symbols-w400-s24-outlined`
+
+> **Note:** You can also build the library from source and install it locally. See the [Build Process](#build-process) section for details.
 
 ## Usage
 
-Import icons from their respective sets. For example, to use a Font Awesome icon:
+Import the desired icon and use it in your React components.
 
 ```jsx
 import React from "react";
-import { IconSearchFill } from "@ailabs-yating/react-material-symbols-wght400-opsz24-rounded";
+import { IconSearchFill } from "@ailabs-yating/react-material-symbols-w400-s24-rounded";
 
 const App = () => {
   return (
@@ -32,44 +37,75 @@ const App = () => {
 export default App;
 ```
 
-Each icon package contain two style, normal and filled. For example:
+Each icon package contains two styles: normal and filled. The filled version has a `Fill` suffix.
 
-- `<IconSearch />` for fill `0`
-- `<IconSearchFill />` for fill `1`
+- **Normal:** `<IconSearch />` (fill=`0`)
+- **Filled:** `<IconSearchFill />` (fill=`1`)
 
-## Material SVG sources
+## SVG Configuration
 
-Currently we provide:
-
-`wght400-opsz24-rounded`: weight 400, optical size 24dp and rounded variant
-
-## Props
-
-The react icon is pre-configured with svgo option as following:
+The icons are processed by [SVGR](https://react-svgr.com/) with the following default settings to ensure they are optimized and accessible:
 
 ```js
 {
-    "icon": true, // width and height set to 1em,
-    "fill": "currentColor", // will inherent the parents color
-    "aria-hidden": true,
+    "icon": true,          // Sets width and height to 1em
+    "fill": "currentColor", // Inherits color from the parent's CSS
+    "aria-hidden": true,   // Hides decorative icons from screen readers
 }
 ```
 
 ## Build Process
 
-```sh
-npm run lucky-ball-go
-# or
-npm run download # using @material-design-icons/scripts
-npm run generate # generate the icons ts template
-npm run build # using vite-rollup to bundle the package
-```
+To build the library from source, follow these steps:
+
+1.  **Install Dependencies**
+
+    ```bash
+    npm install
+    ```
+
+2.  **Select Icon Variant**
+    Run the interactive script to choose your desired icon settings.
+
+    ```bash
+    npm run select
+    ```
+
+3.  **Build the Library**
+    This command will download the SVGs, generate the React components, and bundle the package.
+
+    ```bash
+    npm run lucky-ball-go
+    ```
+
+    Alternatively, you can run the steps individually:
+
+    ```bash
+    npm run download # Download SVGs
+    npm run generate # Generate component files
+    npm run build    # Bundle the package with Vite/Rollup
+    ```
+
+4.  **Package the Library**
+    Before packing, you may want to edit `package.json` to set a custom package name.
+
+    ```bash
+    npm pack
+    ```
+
+5.  **Install Locally in Your Project**
+    Move the generated `.tgz` file to your project's root directory and install it.
+    ```bash
+    # Example command
+    npm install ./ailabs-yating-react-material-symbols-w400-s24-outlined-1.0.1.tgz
+    ```
+
+> **Important:** Some `.gitignore` configurations exclude `*.tgz` files. If you intend to commit the local package to your repository, you may need to explicitly add it using `git add -f <your-package-file.tgz>`.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Note
+## Acknowledgements
 
-This library is inspired by lucide-react and material-symbols/svg,
-we provide the same svg img preview inside the jsdoc so IDE can show them when hover or selected.
+This library is inspired by `lucide-react` and `material-symbols/svg`. It includes JSDoc annotations that allow modern IDEs to display a preview of the SVG icon on hover.

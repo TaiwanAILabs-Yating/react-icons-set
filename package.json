@@ -1,6 +1,6 @@
 {
-  "name": "@ailabs-yating/react-material-symbols-wght400-opsz24-rounded",
-  "version": "1.0.0",
+  "name": "@ailabs-yating/react-material-symbols-w400-s24-rounded",
+  "version": "1.0.1",
   "author": "ailabs-yating",
   "license": "MIT",
   "description": "A comprehensive React icon set featuring Material Symbols. Each icon is typed with an embedded base64 image, enabling IDEs to display a visual preview on hover for an enhanced developer experience.",
@@ -9,14 +9,17 @@
     "url": "https://github.com/TaiwanAILabs-Yating/react-icons-set"
   },
   "scripts": {
-    "download": "mkdir ./src/icon-sources && npx @material-design-icons/scripts@0.5.2 download svg --symbols --weight 400 --size 24 --to ./src/icon-sources",
-    "generate": "npx tsx ./src/main.ts",
+    "select": "tsx ./src/select.ts",
+    "download": "tsx ./src/download.ts",
+    "generate": "tsx ./src/main.ts",
     "build": "NODE_OPTIONS=--max-old-space-size=8192 vite build",
     "clean": "rm -rf dist && rm -rf ./src/output && rm -rf ./src/icon-sources",
-    "luck-ball-go": "npm run clean && npm run download && npm run generate && npm run build"
+    "luck-ball-go": "npm run download && npm run generate && npm run build"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -30,8 +33,11 @@
   "sideEffects": false,
   "devDependencies": {
     "@types/node": "^24.2.0",
+    "@types/prompts": "^2.4.9",
     "@types/react": "^19.1.9",
+    "prompts": "^2.4.2",
     "react": "^19.1.1",
+    "tsx": "^4.20.3",
     "typescript": "^5.9.2",
     "vite": "^7.0.6",
     "vite-plugin-dts": "^4.5.4",
@@ -39,10 +45,5 @@
   },
   "peerDependencies": {
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "materialSymbols": {
-    "weight": 400,
-    "opticalSize": 24,
-    "style": "rounded"
   }
 }

@@ -1,22 +1,19 @@
 import { readdir, writeFile, readFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-
-const SRC_FOLDER = "icon-sources/rounded";
-const OUT_FOLDER = "output";
-const ICON_NAME_PREFIX = "Icon";
+import { CONFIGS, MATERIAL_SYMBOLS } from "./config";
 
 async function main() {
-  const sourceDir = path.resolve(__dirname, SRC_FOLDER);
-  const iconFiles = (await readdir(sourceDir)).filter((file) =>
+  console.log(`SRC FOLDER exists at ${CONFIGS.SRC_FOLDER}`);
+  const iconFiles = (await readdir(CONFIGS.SRC_FOLDER)).filter((file) =>
     file.endsWith(".svg")
   );
-  await mkdir(path.resolve(__dirname, OUT_FOLDER), { recursive: true });
-  const indexFilePath = path.resolve(__dirname, OUT_FOLDER, "index.ts");
+  await mkdir(CONFIGS.OUT_FOLDER, { recursive: true });
+  const indexFilePath = path.resolve(CONFIGS.OUT_FOLDER, "index.ts");
   await writeFile(indexFilePath, "", { flag: "w" });
 
   for (let i = 0; i < iconFiles.length; i++) {
     const svgFilePath = iconFiles[i];
-    const svgFileFullPath = path.resolve(sourceDir, svgFilePath);
+    const svgFileFullPath = path.resolve(CONFIGS.SRC_FOLDER, svgFilePath);
     const componentName = `${toPascalCase(path.basename(svgFilePath, ".svg"))}`;
     const filename = `${componentName}.ts`;
 
@@ -34,7 +31,7 @@ async function main() {
     });
 
     // Write the generated template to the output folder
-    await writeFile(path.resolve(__dirname, OUT_FOLDER, filename), template);
+    await writeFile(path.resolve(CONFIGS.OUT_FOLDER, filename), template);
     // Append the export statement to the index file
     await writeFile(indexFilePath, `export * from './${componentName}';\n`, {
       flag: "a",
@@ -59,6 +56,8 @@ const base64SVG = (svgContents: string) =>
       )
   ).toString("base64");
 
+const header = `${MATERIAL_SYMBOLS.VARIANT}, ${MATERIAL_SYMBOLS.WEIGHT} weight, ${MATERIAL_SYMBOLS.OPTICAL_SIZE}dp optical size`;
+
 export async function generateTemplate({
   svgPath,
   componentName,
@@ -72,12 +71,13 @@ export async function generateTemplate({
   return `
 import C from '${svgPath}?react';
 /**
+ * ${header}
  * @preview ![img](data:image/svg+xml;base64,${svgBase64})
- * @link https://fonts.google.com/icons?icon.query=${toKebabCase(
-   componentName
- ).replaceAll("-", "+")}
+ * @link https://fonts.google.com/icons?icon.query=${toKebabCase(componentName)
+   .replace(/-fill$/g, "")
+   .replaceAll("-", "+")}
  */
-export const ${ICON_NAME_PREFIX}${componentName} = C;
+export const ${CONFIGS.ICON_NAME_PREFIX}${componentName} = C;
 `;
 }
 
