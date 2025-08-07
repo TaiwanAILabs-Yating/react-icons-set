@@ -4,6 +4,10 @@
   "author": "ailabs-yating",
   "license": "MIT",
   "description": "A comprehensive React icon set featuring Material Symbols. Each icon is typed with an embedded base64 image, enabling IDEs to display a visual preview on hover for an enhanced developer experience.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TaiwanAILabs-Yating/react-icons-set"
+  },
   "scripts": {
     "download": "mkdir ./src/icon-sources && npx @material-design-icons/scripts@0.5.2 download svg --symbols --weight 400 --size 24 --to ./src/icon-sources",
     "generate": "npx tsx ./src/main.ts",
