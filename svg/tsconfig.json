@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "declaration": false,
+    "noEmitOnError": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "downlevelIteration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "jsx": "react-jsx"
+  },
+  "exclude": ["**/node_modules"],
+  "include": ["src", "vite.config.ts", "svgr.d.ts"]
+}
